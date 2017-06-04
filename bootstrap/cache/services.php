@@ -28,6 +28,8 @@
     24 => 'App\\Providers\\AuthServiceProvider',
     25 => 'App\\Providers\\EventServiceProvider',
     26 => 'App\\Providers\\RouteServiceProvider',
+    27 => 'Webpatser\\Countries\\CountriesServiceProvider',
+    28 => 'JeroenNoten\\LaravelAdminLte\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -45,6 +47,8 @@
     11 => 'App\\Providers\\AuthServiceProvider',
     12 => 'App\\Providers\\EventServiceProvider',
     13 => 'App\\Providers\\RouteServiceProvider',
+    14 => 'Webpatser\\Countries\\CountriesServiceProvider',
+    15 => 'JeroenNoten\\LaravelAdminLte\\ServiceProvider',
   ),
   'deferred' => 
   array (
