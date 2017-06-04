@@ -1,14 +1,11 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Temporary Web Routes
-|--------------------------------------------------------------------------
-*/
+use App\Countries;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// All admin routs
+require(base_path() . '/routes/admin.php');
+
+Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register');
 
 // KAO POLU-HOMEPAGES S 4 STRANE: NEARBY/FRIENDS/CHAT/PICTURES
 
@@ -36,3 +33,7 @@ Route::get('/album', function () {
 Route::get('/profile-friends', function () {
     return view('frontend.profile.profile_friends');
 });
+
+// Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

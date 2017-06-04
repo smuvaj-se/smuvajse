@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/style.css" />
         <link rel="stylesheet" href="css/ionicons.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
-    
+
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
     </head>
@@ -22,7 +22,8 @@
 
     <!-- Header
     ================================================= -->
-    <header id="header-inverse">
+    <header id="header-inverse clearfix">
+
       <nav class="navbar navbar-default navbar-fixed-top menu">
         <div class="container">
 
@@ -37,68 +38,11 @@
             <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
           </div>
 
-          <!-- Collect the nav links, forms, and other content for toggling -->
-          <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right main-menu">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Home <span><img src="images/down-arrow.png" alt="" /></span></a>
-                  <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="index.html">Landing Page 1</a></li>
-                    <li><a href="index-register.html">Landing Page 2</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Newsfeed <span><img src="images/down-arrow.png" alt="" /></span></a>
-                  <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="newsfeed.html">Newsfeed</a></li>
-                    <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                    <li><a href="newsfeed-friends.html">My friends</a></li>
-                    <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                    <li><a href="newsfeed-images.html">Images</a></li>
-                    <li><a href="newsfeed-videos.html">Videos</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Timeline <span><img src="images/down-arrow.png" alt="" /></span></a>
-                <ul class="dropdown-menu login">
-                  <li><a href="timeline.html">Timeline</a></li>
-                  <li><a href="timeline-about.html">Timeline About</a></li>
-                  <li><a href="timeline-album.html">Timeline Album</a></li>
-                  <li><a href="timeline-friends.html">Timeline Friends</a></li>
-                </ul>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Pages <span><img src="images/down-arrow.png" alt="" /></span></a>
-                <ul class="dropdown-menu page-list">
-                  <li><a href="index.html">Landing Page 1</a></li>
-                  <li><a href="index-register.html">Landing Page 2</a></li>
-                  <li><a href="newsfeed.html">Newsfeed</a></li>
-                  <li><a href="newsfeed-people-nearby.html">Poeple Nearly</a></li>
-                  <li><a href="newsfeed-friends.html">My friends</a></li>
-                  <li><a href="newsfeed-messages.html">Chatroom</a></li>
-                  <li><a href="newsfeed-images.html">Images</a></li>
-                  <li><a href="newsfeed-videos.html">Videos</a></li>
-                  <li><a href="timeline.html">Timeline</a></li>
-                  <li><a href="timeline-about.html">Timeline About</a></li>
-                  <li><a href="timeline-album.html">Timeline Album</a></li>
-                  <li><a href="timeline-friends.html">Timeline Friends</a></li>
-                  <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-              </li>
-              <li class="dropdown"><a href="contact.html">Contact</a></li>
-            </ul>
-            <form class="navbar-form navbar-right hidden-sm">
-              <div class="form-group">
-                <i class="icon ion-android-search"></i>
-                <input type="text" class="form-control" placeholder="Search friends, photos, videos">
-              </div>
-            </form>
-          </div> --><!-- /.navbar-collapse -->
         </div><!-- /.container -->
       </nav>
     </header>
     <!--Header End-->
-    
+
     <!-- Landing Page Contents
     ================================================= -->
     <div id="lp-register">
@@ -112,8 +56,8 @@
             </div>
           </div>
             <div class="col-sm-6 col-sm-offset-1">
-            <div class="reg-form-container"> 
-            
+            <div class="reg-form-container">
+
               <!-- Register/Login Tabs-->
               <div class="reg-options">
                 <ul class="nav nav-tabs">
@@ -121,13 +65,13 @@
                   <li><a href="#login" data-toggle="tab">Login</a></li>
                 </ul><!--Tabs End-->
               </div>
-              
+
               <!--Registration Form Contents-->
               <div class="tab-content">
                 <div class="tab-pane active" id="register">
                   <h3>Regustruj se !!!</h3>
                   <p class="text-muted">Pridruži nam se odmah. Započni muvanje </p>
-                  
+
                   <!--Register Form-->
                   <form name="registration_form" id='registration_form' class="form-inline">
                     <div class="row">
@@ -501,12 +445,12 @@
                   <p><a href="#login" data-toggle="tab">Već imate nalog?</a></p>  <!-- promeniti class="active" na tab selektore -->
                   <button class="btn btn-primary">Registruj me</button>
                 </div><!--Registration Form Contents Ends-->
-                
+
                 <!--Login-->
                 <div class="tab-pane" id="login">
                   <h3>Login</h3>
                   <p class="text-muted">Loguj se i započni muvanje</p>
-                  
+
                   <!--Login Form-->
                   <form name="Login_form" id='Login_form'>
                      <div class="row">
@@ -521,7 +465,7 @@
                         <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Lozinka"/>
                       </div>
                     </div>
-                  </form><!--Login Form Ends--> 
+                  </form><!--Login Form Ends-->
                   <p><a href="#">Zaboravio si lozinku?</a></p>
                   <button class="btn btn-primary">Login</button>
                 </div>
@@ -531,7 +475,7 @@
         </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-6">
-          
+
             <!--Social Icons-->
             <ul class="list-inline social-icons">
               <li><a href="#"><i class="icon ion-social-facebook"></i></a></li>
@@ -557,6 +501,6 @@
     <script src="js/jquery.appear.min.js"></script>
     <script src="js/jquery.incremental-counter.js"></script>
     <script src="js/script.js"></script>
-    
+
     </body>
 </html>
