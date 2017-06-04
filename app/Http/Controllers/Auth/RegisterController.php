@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Countries;
+
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -39,6 +41,14 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function show()
+    {
+
+        return view('auth.register', [
+                'countries' => Countries::get()->all(),
+            ]);
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -48,8 +58,8 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
