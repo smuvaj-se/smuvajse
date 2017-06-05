@@ -27,35 +27,56 @@
                   <h3>Regustruj se !!!</h3>
                   <p class="text-muted">Pridruži nam se odmah. Započni muvanje </p>
 
+                  {{-- @if(count($errors))
+                    @foreach($errors->all() as $error)
+                      {{ $error }}
+                    @endforeach
+                  @endif --}}
                   <!--Register Form-->
-                  <form name="registration_form" id='registration_form' class="form-inline">
+                  <form method="POST" action="/register" name="registration_form" id='registration_form' class="form-inline">
                     <div class="row">
+                      {{ csrf_field() }}
                       <div class="form-group col-xs-6">
                         <label for="name" class="sr-only">Ime</label>
                         <input id="name" class="form-control input-group-lg" type="text" name="name" title="Ime" placeholder="Ime"/>
+                        @if($errors->has('name'))
+                        {{ $errors->first('name') }}
+                        @endif
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="surname" class="sr-only">Prezime</label>
                         <input id="surname" class="form-control input-group-lg" type="text" name="surname" title="Prezime" placeholder="Prezime"/>
+                        @if($errors->has('surname'))
+                        {{ $errors->first('surname') }}
+                        @endif
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="email" class="sr-only">Email</label>
-                        <input id="email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Email"/>
+                        <input id="email" class="form-control input-group-lg" type="text" name="email" title="Enter Email" placeholder="Email"/>
+                        @if($errors->has('email'))
+                        {{ $errors->first('email') }}
+                        @endif
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password" class="sr-only">Lozinka</label>
                         <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Lozinka"/>
+                        @if($errors->has('password'))
+                        {{ $errors->first('password') }}
+                        @endif
                       </div>
                     </div>
 
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="password_confirmed" class="sr-only">Potvrdi Lozinku</label>
-                        <input id="password_confirmed" class="form-control input-group-lg" type="password" name="password_confirmed" title="Enter password" placeholder="Lozinka"/>
+                        <input id="password_confirmed" class="form-control input-group-lg" type="password" name="password_confirmation" title="Enter password" placeholder="Lozinka"/>
+                        @if($errors->has('password_confirmation'))
+                        {{ $errors->first('password_confirmation') }}
+                        @endif
                       </div>
                     </div>
 
@@ -63,7 +84,7 @@
                       <p class="birth"><strong>Datum rođenja</strong></p>
                       <div class="form-group col-sm-3 col-xs-6">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="day">
+                        <select name="day" class="form-control" id="day">
                           <option value="Day" disabled selected>Dan</option>
                           <option>1</option>
                           <option>2</option>
@@ -97,10 +118,13 @@
                           <option>30</option>
                           <option>31</option>
                         </select>
+                        @if($errors->has('day'))
+                        {{ $errors->first('day') }}
+                        @endif
                       </div>
                       <div class="form-group col-sm-3 col-xs-6">
                         <label for="month" class="sr-only"></label>
-                        <select class="form-control" id="month">
+                        <select name="month" class="form-control" id="month">
                           <option value="month" disabled selected>Mesec</option>
                           <option value="1">Jan</option>
                           <option value="2">Feb</option>
@@ -115,7 +139,11 @@
                           <option value="11">Nov</option>
                           <option value="12">Dec</option>
                         </select>
+                        @if($errors->has('month'))
+                        {{ $errors->first('month') }}
+                        @endif
                       </div>
+
                       <div class="form-group col-sm-6 col-xs-12">
 
                         @php
@@ -127,7 +155,7 @@
 
                         <label for="year" class="sr-only"></label>
 
-                        <select class="form-control" id="year">
+                        <select name="year" class="form-control" id="year">
                           <option value="year" disabled selected>Godina</option>
 
                           @for ($i = $firstYear; $i <= $lastYear; $i++)
@@ -135,25 +163,33 @@
                           @endfor
 
                         </select>
-
+                        @if($errors->has('year'))
+                        {{ $errors->first('year') }}
+                        @endif
                       </div>
                     </div>
                     <div class="form-group gender">
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" value=m checked>Muški pol
+                        <input type="radio" name="sex" value=1 checked>Muški pol
                       </label>
                       <label class="radio-inline">
-                        <input type="radio" name="optradio" value=f >Ženski pol
+                        <input type="radio" name="sex" value=0 >Ženski pol
                       </label>
+                      @if($errors->has('sex'))
+                        {{ $errors->first('sex') }}
+                      @endif
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-6">
                         <label for="city" class="sr-only">Grad</label>
                         <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Vaš Grad" placeholder="Grad"/>
+                        @if($errors->has('city'))
+                        {{ $errors->first('city') }}
+                        @endif
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="country" class="sr-only"></label>
-                        <select class="form-control" id="country">
+                        <select name="country" class="form-control" id="country">
                           <option value="country" disabled selected>Država</option>
 
                           @foreach ($countries as $country)
@@ -161,11 +197,15 @@
                           @endforeach
 
                         </select>
+                        @if($errors->has('country'))
+                        {{ $errors->first('country') }}
+                        @endif
                       </div>
                     </div>
+                    <p><a href="#login" data-toggle="tab">Već imate nalog?</a></p>  <!-- promeniti class="active" na tab selektore -->
+                  <button type="submit" class="btn btn-primary">Registruj me</button>
                   </form><!--Register Now Form Ends-->
-                  <p><a href="#login" data-toggle="tab">Već imate nalog?</a></p>  <!-- promeniti class="active" na tab selektore -->
-                  <button class="btn btn-primary">Registruj me</button>
+                  
                 </div><!--Registration Form Contents Ends-->
 
                 <!--Login-->
@@ -174,22 +214,27 @@
                   <p class="text-muted">Loguj se i započni muvanje</p>
 
                   <!--Login Form-->
-                  <form name="Login_form" id='Login_form'>
+                  <form method="POST" action="/login" name="Login_form" id='Login_form'>
+                    {{ csrf_field() }}
                      <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-email" class="sr-only">Email</label>
-                        <input id="my-email" class="form-control input-group-lg" type="text" name="Email" title="Enter Email" placeholder="Email"/>
+                        <input id="my-email" class="form-control input-group-lg" type="text" name="email" title="Enter Email" placeholder="Email"/>
                       </div>
                     </div>
                     <div class="row">
                       <div class="form-group col-xs-12">
                         <label for="my-password" class="sr-only">Password</label>
                         <input id="my-password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Lozinka"/>
+                        @if($errors->has('password'))
+                        {{ $errors->first('password') }}
+                        @endif
                       </div>
                     </div>
+                    <p><a href="#">Zaboravio si lozinku?</a></p>
+                    <button type="submit" class="btn btn-primary">Login</button>
                   </form><!--Login Form Ends-->
-                  <p><a href="#">Zaboravio si lozinku?</a></p>
-                  <button class="btn btn-primary">Login</button>
+                  
                 </div>
               </div>
             </div>
