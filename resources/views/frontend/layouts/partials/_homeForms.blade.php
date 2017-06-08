@@ -40,14 +40,14 @@
                         <label for="name" class="sr-only">Ime</label>
                         <input id="name" class="form-control input-group-lg" type="text" name="name" title="Ime" placeholder="Ime"/>
                         @if($errors->has('name'))
-                        {{ $errors->first('name') }}
+                        <span class="red">{{ $errors->first('name') }}</span>
                         @endif
                       </div>
                       <div class="form-group col-xs-6">
                         <label for="surname" class="sr-only">Prezime</label>
                         <input id="surname" class="form-control input-group-lg" type="text" name="surname" title="Prezime" placeholder="Prezime"/>
                         @if($errors->has('surname'))
-                        {{ $errors->first('surname') }}
+                        <span class="red">{{ $errors->first('surname') }}</span>
                         @endif
                       </div>
                     </div>
@@ -56,7 +56,7 @@
                         <label for="email" class="sr-only">Email</label>
                         <input id="email" class="form-control input-group-lg" type="text" name="email" title="Enter Email" placeholder="Email"/>
                         @if($errors->has('email'))
-                        {{ $errors->first('email') }}
+                        <span class="red">{{ $errors->first('email') }}</span>
                         @endif
                       </div>
                     </div>
@@ -65,7 +65,7 @@
                         <label for="password" class="sr-only">Lozinka</label>
                         <input id="password" class="form-control input-group-lg" type="password" name="password" title="Enter password" placeholder="Lozinka"/>
                         @if($errors->has('password'))
-                        {{ $errors->first('password') }}
+                        <span class="red">{{ $errors->first('password') }}</span>
                         @endif
                       </div>
                     </div>
@@ -75,7 +75,7 @@
                         <label for="password_confirmed" class="sr-only">Potvrdi Lozinku</label>
                         <input id="password_confirmed" class="form-control input-group-lg" type="password" name="password_confirmation" title="Enter password" placeholder="Lozinka"/>
                         @if($errors->has('password_confirmation'))
-                        {{ $errors->first('password_confirmation') }}
+                        <span class="red">{{ $errors->first('password_confirmation') }}</span>
                         @endif
                       </div>
                     </div>
@@ -119,7 +119,7 @@
                           <option>31</option>
                         </select>
                         @if($errors->has('day'))
-                        {{ $errors->first('day') }}
+                        <span class="red">{{ $errors->first('day') }}</span>
                         @endif
                       </div>
                       <div class="form-group col-sm-3 col-xs-6">
@@ -140,7 +140,7 @@
                           <option value="12">Dec</option>
                         </select>
                         @if($errors->has('month'))
-                        {{ $errors->first('month') }}
+                        <span class="red">{{ $errors->first('month') }}</span>
                         @endif
                       </div>
 
@@ -164,7 +164,7 @@
 
                         </select>
                         @if($errors->has('year'))
-                        {{ $errors->first('year') }}
+                        <span class="red">{{ $errors->first('year') }}</span>
                         @endif
                       </div>
                     </div>
@@ -176,7 +176,7 @@
                         <input type="radio" name="sex" value=0 >Ženski pol
                       </label>
                       @if($errors->has('sex'))
-                        {{ $errors->first('sex') }}
+                        <span class="red">{{ $errors->first('sex') }}</span>
                       @endif
                     </div>
                     <div class="row">
@@ -184,7 +184,7 @@
                         <label for="city" class="sr-only">Grad</label>
                         <input id="city" class="form-control input-group-lg reg_name" type="text" name="city" title="Vaš Grad" placeholder="Grad"/>
                         @if($errors->has('city'))
-                        {{ $errors->first('city') }}
+                        <span class="red">{{ $errors->first('city') }}</span>
                         @endif
                       </div>
                       <div class="form-group col-xs-6">
@@ -198,7 +198,7 @@
 
                         </select>
                         @if($errors->has('country'))
-                        {{ $errors->first('country') }}
+                        <span class="red">{{ $errors->first('country') }}</span>
                         @endif
                       </div>
                     </div>
