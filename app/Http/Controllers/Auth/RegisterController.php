@@ -56,12 +56,20 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {
+    {   
         return Validator::make($data, [
-            'name'     => 'required|string|max:255',
-            'email'    => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:255',
+            'surname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'day' => 'required|integer',
+            'month' => 'required|integer',
+            'year' => 'required|integer',
+            'sex' => 'required|boolean',
+            'city' => 'required|string',
+            'country' => 'required|integer'
         ]);
+
     }
 
     /**
@@ -71,11 +79,19 @@ class RegisterController extends Controller
      * @return User
      */
     protected function create(array $data)
-    {
+    {   
+
         return User::create([
             'name' => $data['name'],
+            'surname' => $data['surname'],
             'email' => $data['email'],
+            'username' => $data['name'] . $data['surname'],
             'password' => bcrypt($data['password']),
+            'country_id' => $data['country'],
+            'sex' => $data['sex'],
+            'birthDate' => \Carbon\Carbon::create($data['year'], $data['month'], $data['day']),
+            'role_id' => 3
+
         ]);
     }
 }

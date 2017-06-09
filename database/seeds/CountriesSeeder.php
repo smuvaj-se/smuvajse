@@ -16,7 +16,7 @@ class CountriesSeeder extends Seeder {
 
         //Get all of the countries
         $countries = Countries::getList();
-        $i = 4;
+        $i = 1;
         foreach ($countries as $countryId => $country){
             DB::table(\Config::get('countries.table_name'))->insert(array(
                 'id'                => $i,
@@ -41,7 +41,7 @@ class CountriesSeeder extends Seeder {
                 'order'             => $i
             ));
 
-            $i += 4;
+            $i += 1;
         }
     }
 }

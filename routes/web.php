@@ -36,4 +36,12 @@ Route::get('/profile-friends', function () {
 
 // Auth::routes();
 
+Route::post('/register', 'Auth\RegisterController@register');
+
+Route::post('/login', 'Auth\LoginController@login');
+
+// privremeno da se moz izlogujemo
+
+Route::get('/logout', 'Auth\LoginController@logout');
+
 Route::get('/home', 'HomeController@index')->name('home');
