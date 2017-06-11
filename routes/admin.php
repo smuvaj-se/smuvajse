@@ -9,8 +9,6 @@ Route::group([
         return view('admin::test');
     });
 
-    Route::get('/test', function ()    {
-        echo 'test';
-    });
+    Route::get('/countries', 'CountriesController@show');
 
 });
