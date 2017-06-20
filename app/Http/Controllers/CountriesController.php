@@ -14,12 +14,16 @@ class CountriesController extends Controller
     	$countries = Countries::paginate(20);
 
     	if(request()->ajax())
-    		return view('admin::partials._countries',[
-				'countries' => $countries
-			]);
+    		return $countries;
 
     	return view('admin::countries.show',[
 			'countries' => $countries
 		]);
+    }
+
+    public function save(Request $request)
+    {
+       var_dump('<pre>', $request->input('countryName') , '</pre>');
+       var_dump('<pre>', $request->input('countryOrder') , '</pre>');
     }
 }

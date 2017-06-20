@@ -5,6 +5,8 @@ use App\Countries;
 // All admin routs
 require(base_path() . '/routes/admin.php');
 
+Route::post('country/insert', 'CountriesController@save');
+
 Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register');
 
 // KAO POLU-HOMEPAGES S 4 STRANE: NEARBY/FRIENDS/CHAT/PICTURES
