@@ -6,6 +6,7 @@ use App\Countries;
 require(base_path() . '/routes/admin.php');
 
 Route::post('country/insert', 'CountriesController@save');
+Route::get('country/search', 'CountriesController@search');
 
 Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register');
 

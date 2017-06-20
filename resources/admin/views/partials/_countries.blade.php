@@ -5,9 +5,11 @@
 		<tr>
 			<td>
 				<input
+					class="form-control"
 					type="text"
 					id="country-filter"
-					@keyup="filterCountries">
+					@keyup="filterCountries"
+					placeholder="Filter countries by name">
 			</td>
 		</tr>
 
@@ -24,10 +26,6 @@
 
 	<tbody is="country-list" :countries="countries"></tbody>
 
-	<tfoot>
-		<tr>
-			<td>{{ $countries->links() }}</td>
-		</tr>
-	</tfoot>
+	<tfoot is="pagination-list"></tfoot>
 
 </table>
