@@ -26,6 +26,6 @@
 
 	<tbody is="country-list" :countries="countries"></tbody>
 
-	<tfoot is="pagination-list"></tfoot>
+	<tfoot is="pagination-list" :countries="countries"></tfoot>
 
 </table>

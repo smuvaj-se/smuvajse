@@ -81,7 +81,7 @@ Vue.component('pagination-list', {
     	<tfoot>
 			<div>
 			  <tr>
-			  	<td v-for="i in 10">{{ i }}</td>
+			  	 <td v-for="i in countries.last_page">{{i}}</td>
 			  </tr>
 			</div>
 		</tfoot>
@@ -112,8 +112,7 @@ let App = new Vue({
 			axios.get('/admin/countries')
 				.then(function (response) {
 
-					self.countries = response.data;
-
+					self.countries  = response.data;
 					console.log(self.countries);
 
 				})

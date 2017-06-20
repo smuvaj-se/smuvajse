@@ -51,7 +51,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('country', {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pagination-list', {
 
-	template: '\n    \t<tfoot>\n\t\t\t<div>\n\t\t\t  <tr>\n\t\t\t  \t<td v-for="i in 10">{{ i }}</td>\n\t\t\t  </tr>\n\t\t\t</div>\n\t\t</tfoot>\n    ',
+	template: '\n    \t<tfoot>\n\t\t\t<div>\n\t\t\t  <tr>\n\t\t\t  \t <td v-for="i in countries.last_page">{{i}}</td>\n\t\t\t  </tr>\n\t\t\t</div>\n\t\t</tfoot>\n    ',
 
 	props: ['countries']
 });
@@ -77,7 +77,6 @@ var App = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 			axios.get('/admin/countries').then(function (response) {
 
 				self.countries = response.data;
-
 				console.log(self.countries);
 			}).catch(function (error) {
 				console.log(error);

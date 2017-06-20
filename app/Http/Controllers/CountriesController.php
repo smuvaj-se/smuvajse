@@ -38,6 +38,6 @@ class CountriesController extends Controller
 
         return Countries::where('name', 'ilike', "{$name}%")
                 ->orderBy('name', 'asc')
-                ->get();
+                ->paginate(20);
     }
 }
