@@ -9,7 +9,7 @@ Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register')
 
 // KAO POLU-HOMEPAGES S 4 STRANE: NEARBY/FRIENDS/CHAT/PICTURES
 
-Route::get('/nearby', function () {
+Route::get('/home', function () {
     return view('frontend.feed.nearby');
 });
 Route::get('/friends', function () {
@@ -44,4 +44,3 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-Route::get('/home', 'HomeController@index')->name('home');

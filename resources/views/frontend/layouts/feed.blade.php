@@ -77,7 +77,9 @@
                     <li><a href="">Notifikacija 6</a></li>
                   </ul>
               </li>
-              <li class="dropdown"><a href="">Izloguj me</a></li>
+              <li class="dropdown">
+                  <a href="/logout">Izloguj me</a>
+              </li>
             </ul>
             <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
@@ -105,7 +107,7 @@
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
               {{-- <li><i class="icon ion-ios-paper"></i><div><a href="newsfeed.html">My Newsfeed</a></div></li> --}}
-              <li><i class="icon ion-ios-people"></i><div><a href="/nearby">Osobe u okolini</a></div></li>
+              <li><i class="icon ion-ios-people"></i><div><a href="/home">Osobe u okolini</a></div></li>
               <li><i class="icon ion-ios-people-outline"></i><div><a href="/friends">Prijatelji</a></div></li>
               <li><i class="icon ion-chatboxes"></i><div><a href="/chat">Dopisivanje</a></div></li>
               <li><i class="icon ion-images"></i><div><a href="/pictures">Slike</a></div></li>

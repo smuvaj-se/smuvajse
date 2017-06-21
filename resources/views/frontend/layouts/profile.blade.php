@@ -77,7 +77,10 @@
                     <li><a href="">Notifikacija 6</a></li>
                   </ul>
               </li>
-              <li class="dropdown"><a href="">Izloguj me</a></li>
+              <li class="dropdown">
+                  <a href="/logout">Izloguj me</a>
+              </li>
+              </li>
             </ul>
             <form class="navbar-form navbar-right hidden-sm">
               <div class="form-group">
