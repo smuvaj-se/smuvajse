@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+use Storage;
+
 
 class AvatarsController extends Controller
 {
@@ -15,28 +18,35 @@ class AvatarsController extends Controller
     public function update_avatar(Request $request) 
     {
     	$user=Auth::user();
-    	if ($request->file('avatar')) 
+        $image = $request->image;
+
+    	if ($image) 
     	{
-    		$file = $request->file('avatar');
-    		$filename = time(). '.' . $file->getClientOriginalExtension();
+    		$file = $image;
+            list($type, $file) = explode(';', $file);
+            list(, $file)      = explode(',', $file);
+            $file = base64_decode($file);
+    		$filename = 'avatar.png' ;
     		if ($user->avatar !== null) 
     		{
-    			$exists = Storage::disk('local')->exists($user->username.'/'.$user->avatar);
+    			$exists = Storage::disk('public')->exists($user->username.'/'.'avatar.png');
     			if ($exists)
     			{
-    				Storage::delete($user->username.'/'.$user->avatar);
+    				Storage::delete($user->username.'/'.'avatar.png');
     			}
     		}
-    		$user->avatar =$filename;
-    		Storage::disk('local')->put($user->username.'/'.$filename);
-    		$user->update();
+    		$user->avatar =true;
+    		if (Storage::disk('public')->put($user->username.'/'.$filename, $file))
+    		{
+                $user->update();
 
-    		return response()->json([
-			    'name' => $user->username,
-			    'avatar' => $filename
-			]);
+                return response()->json([
+                    'name' => $user->username,
+                    'avatar' => $filename
+                ]);
+            } else { return 'Not Uploaded'; }
     	} 
-    	if (!($request->file('avatar'))) 
+    	if (!$image) 
     	{
     		return 'Avatar not selected';
     	}

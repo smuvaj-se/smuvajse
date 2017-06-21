@@ -9,30 +9,16 @@ Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register')
 
 // KAO POLU-HOMEPAGES S 4 STRANE: NEARBY/FRIENDS/CHAT/PICTURES
 
-Route::get('/home', function () {
-    return view('frontend.feed.nearby');
-});
-Route::get('/friends', function () {
-    return view('frontend.feed.friends');
-});
-Route::get('/chat', function () {
-    return view('frontend.feed.chat');
-});
-Route::get('/pictures', function () {
-    return view('frontend.feed.pictures');
-});
+Route::get('/home', 'FeedController@home');
+Route::get('/friends', 'FeedController@friends');
+Route::get('/chat', 'FeedController@chat');
+Route::get('/pictures', 'FeedController@pictures');
 
 // PROFIL
 
-Route::get('/about', function () {
-    return view('frontend.profile.about');
-});
-Route::get('/album', function () {
-    return view('frontend.profile.album');
-});
-Route::get('/profile-friends', function () {
-    return view('frontend.profile.profile_friends');
-});
+Route::get('/about', 'ProfileController@about');
+Route::get('/album', 'ProfileController@album');
+Route::get('/profile-friends', 'ProfileController@profile_friends');
 
 // Auth::routes();
 
@@ -44,3 +30,6 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
+
+// Update Avatar
+Route::post('/update_avatar', 'AvatarsController@update_avatar');

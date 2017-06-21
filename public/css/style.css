@@ -167,6 +167,18 @@ section .wrapper{
 	position: relative;
   outline: none;
 }
+.btn-default {
+  background: gray;
+  padding: 5px 25px;
+  border: none;
+  font-size: 14px;
+  border-radius: 4px;
+  color: #fff;
+  position: relative;
+  font-weight: 600;
+  outline: none;
+  border-radius: 30px;
+}
 
 .btn-secondary:hover{
 	background: #000;

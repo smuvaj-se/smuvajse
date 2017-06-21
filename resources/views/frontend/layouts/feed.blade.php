@@ -43,8 +43,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span><img src="images/down-arrow.png" alt="" /></span></a>
                   <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="">Moj Profil</a></li>
-                    <li><a href="">Pretraga</a></li>
+                    <li><a href="/about">Moj Profil</a></li>
+                    <li><a href="/home">Pretraga</a></li>
                   </ul>
               </li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Poruke <span><img src="images/down-arrow.png" alt="" /></span></a>
@@ -101,8 +101,8 @@
           ================================================= -->
     			<div class="col-md-3" style="position:static;">
             <div class="profile-card">
-            	<img src="images/users/user-1.jpg" alt="user" class="profile-photo" />
-            	<h5><a href="timeline.html" class="text-white">Sarah Cruiz</a></h5>
+            	<img src="{{$avatar}}" alt="user" class="profile-photo" />
+            	<h5><a href="about" class="text-white">{{$user->name.' '.$user->surname}}</a></h5><br>
             	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 prijatelja</a>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">

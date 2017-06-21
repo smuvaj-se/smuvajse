@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/ionicons.min.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
-    
+    <link rel="stylesheet" href="assets/croppie/croppie.css" />
+
     <!--Favicon-->
     <link rel="shortcut icon" type="image/png" href="images/fav.png"/>
 	</head>
@@ -43,8 +44,8 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span><img src="images/down-arrow.png" alt="" /></span></a>
                   <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="">Moj Profil</a></li>
-                    <li><a href="">Pretraga</a></li>
+                    <li><a href="/about">Moj Profil</a></li>
+                    <li><a href="/home">Pretraga</a></li>
                   </ul>
               </li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Poruke <span><img src="images/down-arrow.png" alt="" /></span></a>
@@ -106,8 +107,11 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="profile-info">
-                  <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
-                  <h3>Sarah Cruiz</h3>
+                <a href="" data-toggle="modal" data-target="#avatar_modal">
+                  <img src="{{ $avatar }}" alt="" class="img-responsive profile-photo" />
+                </a>
+                  
+                  <h3>{{$user->name." ".$user->surname}}</h3>
                   <p class="text-muted">Creative Director</p>
                 </div>
               </div>
@@ -128,7 +132,7 @@
           <!--Timeline Menu for Small Screens-->
           <div class="navbar-mobile hidden-lg hidden-md">
             <div class="profile-info">
-              <img src="images/users/user-1.jpg" alt="" class="img-responsive profile-photo" />
+              <img src="{{ $avatar }}" alt="" class="img-responsive profile-photo" />
               <h4>Sarah Cruiz</h4>
               <p class="text-muted">Creative Director</p>
             </div>
@@ -198,6 +202,37 @@
       <div class="spinner"></div>
     </div>
 
+    <!-- Avatar Modal -->
+    <div class="modal fade" id="avatar_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Promenite Proflnu sliku</h4>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 text-center">
+                <div id="upload-demo" style="width:350px"></div>
+                </div>
+                <div class="col-md-12" style="padding-top:30px;">
+                <strong>Select Image:</strong>
+                <br/>
+                <input type="file" id="upload">
+                <br/>
+                <button class="btn btn-success upload-result" data-dismiss="modal">Upload Image</button>
+                </div>
+                <div class="col-md-12" style="">
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
     <!-- Scripts
     ================================================= -->
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCTMXfmDn0VlqWIyoOxK8997L-amWbUPiQ&amp;callback=initMap"></script>
@@ -206,6 +241,53 @@
     <script src="js/jquery.sticky-kit.min.js"></script>
     <script src="js/jquery.scrollbar.min.js"></script>
     <script src="js/script.js"></script>
-    
+    <script src="assets/croppie/croppie.js"></script>
+    <script type="text/javascript">
+    // AVATAR UPLOAD
+    $uploadCrop = $('#upload-demo').croppie({
+        enableExif: true,
+        viewport: {
+            width: 300,
+            height: 300,
+            type: 'circle'
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    $('#upload').on('change', function () { 
+      var reader = new FileReader();
+        reader.onload = function (e) {
+          $uploadCrop.croppie('bind', {
+            url: e.target.result
+          }).then(function(){
+            console.log('jQuery bind complete');
+          });
+        }
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('.upload-result').on('click', function (ev) {
+      $uploadCrop.croppie('result', {
+        type: 'canvas',
+        size: 'viewport'
+      }).then(function (resp) {
+        $.ajax({
+          url: "/update_avatar",
+          type: "POST",
+          data: {"_token": "{{ csrf_token() }}", "image":resp},
+          success: function (data) {
+            console.log(data);
+          },
+          error: function(data) {
+            console.log(data.responseText);
+            $('#avatars_modal').modal('hide');
+          }
+        });
+      });
+    });
+    </script>
   </body>
 </html>
