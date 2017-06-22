@@ -1,7 +1,7 @@
 @extends('frontend.layouts.feed')
 
 
-@section('title', 'Home | Smuvaj.se')
+@section('title', 'Početna | Smuvaj.se')
 @section('content')
   <!-- Nearby People List
     ================================================= -->

@@ -41,13 +41,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right main-menu">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span><img src="images/down-arrow.png" alt="" /></span></a>
-                  <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="/about">Moj Profil</a></li>
-                    <li><a href="/home">Pretraga</a></li>
-                  </ul>
-              </li>
+              <li class="dropdown"><a href="/home">Početna</a></li>
+              <li class="dropdown"><a href="/about">Moj Profil</a></li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Poruke <span><img src="images/down-arrow.png" alt="" /></span></a>
                 <ul class="dropdown-menu page-list">
                     <li><a href="">Osoba 1</a></li>
@@ -56,16 +51,6 @@
                     <li><a href="">Osoba 4</a></li>
                     <li><a href="">Osoba 5</a></li>
                     <li><a href="">Osoba 6</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Zahtevi <span><img src="images/down-arrow.png" alt="" /></span></a>
-                <ul class="dropdown-menu page-list">
-                    <li><a href="">Zahtev 1</a></li>
-                    <li><a href="">Zahtev 2</a></li>
-                    <li><a href="">Zahtev 3</a></li>
-                    <li><a href="">Zahtev 4</a></li>
-                    <li><a href="">Zahtev 5</a></li>
-                    <li><a href="">Zahtev 6</a></li>
                   </ul>
               </li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Notifikacije <span><img src="images/down-arrow.png" alt="" /></span></a>
@@ -213,14 +198,14 @@
           <div class="modal-body">
               <div class="row">
                 <div class="col-md-12 text-center">
-                <div id="upload-demo" style="width:350px"></div>
+                <div id="upload-demo" style="width:350px; margin: 0 auto;"></div>
                 </div>
                 <div class="col-md-12" style="padding-top:30px;">
-                <strong>Select Image:</strong>
-                <br/>
-                <input type="file" id="upload">
-                <br/>
-                <button class="btn btn-success upload-result" data-dismiss="modal">Upload Image</button>
+                <strong class="pull-left">Izaberi sliku:</strong>
+                <br>
+                <input type="file" id="upload" class="pull-left">
+
+                <button class="btn btn-primary upload-result pull-right" data-dismiss="modal">Postavi sliku</button>
                 </div>
                 <div class="col-md-12" style="">
                 </div>
@@ -280,6 +265,7 @@
           data: {"_token": "{{ csrf_token() }}", "image":resp},
           success: function (data) {
             console.log(data);
+            $(".profile-photo").attr("src", "{{$avatar}}?timestamp=" + new Date().getTime());
           },
           error: function(data) {
             console.log(data.responseText);

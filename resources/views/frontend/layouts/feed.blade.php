@@ -40,13 +40,8 @@
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right main-menu">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profil <span><img src="images/down-arrow.png" alt="" /></span></a>
-                  <ul class="dropdown-menu newsfeed-home">
-                    <li><a href="/about">Moj Profil</a></li>
-                    <li><a href="/home">Pretraga</a></li>
-                  </ul>
-              </li>
+              <li class="dropdown"><a href="/home">Početna</a></li>
+              <li class="dropdown"><a href="/about">Moj Profil</a></li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Poruke <span><img src="images/down-arrow.png" alt="" /></span></a>
                 <ul class="dropdown-menu page-list">
                     <li><a href="">Osoba 1</a></li>
@@ -55,16 +50,6 @@
                     <li><a href="">Osoba 4</a></li>
                     <li><a href="">Osoba 5</a></li>
                     <li><a href="">Osoba 6</a></li>
-                  </ul>
-              </li>
-              <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Zahtevi <span><img src="images/down-arrow.png" alt="" /></span></a>
-                <ul class="dropdown-menu page-list">
-                    <li><a href="">Zahtev 1</a></li>
-                    <li><a href="">Zahtev 2</a></li>
-                    <li><a href="">Zahtev 3</a></li>
-                    <li><a href="">Zahtev 4</a></li>
-                    <li><a href="">Zahtev 5</a></li>
-                    <li><a href="">Zahtev 6</a></li>
                   </ul>
               </li>
               <li class="dropdown"><a href="#" class="dropdown-toggle pages" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="icon ion-alert red"> </i> Notifikacije <span><img src="images/down-arrow.png" alt="" /></span></a>
@@ -103,7 +88,7 @@
             <div class="profile-card">
             	<img src="{{$avatar}}" alt="user" class="profile-photo" />
             	<h5><a href="about" class="text-white">{{$user->name.' '.$user->surname}}</a></h5><br>
-            	<a href="#" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 prijatelja</a>
+            	<a href="/profile-friends" class="text-white"><i class="ion ion-android-person-add"></i> 1,299 prijatelja</a>
             </div><!--profile card ends-->
             <ul class="nav-news-feed">
               {{-- <li><i class="icon ion-ios-paper"></i><div><a href="newsfeed.html">My Newsfeed</a></div></li> --}}
