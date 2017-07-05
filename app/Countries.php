@@ -8,6 +8,6 @@ class Countries extends Model
 {
      public $timestamps = false;
 
-     protected $fillable = ['name', 'order'];
+     protected $fillable = ['name', 'order', 'show'];
 
 }

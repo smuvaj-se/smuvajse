@@ -1,0 +1,6 @@
+.countries-visible-filter span {
+	display: inline-block;
+}
+.countries-visible-filter span:hover {
+	cursor: pointer;
+}
