@@ -5,7 +5,25 @@ use App\Countries;
 // All admin routs
 require(base_path() . '/routes/admin.php');
 
-Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register');
+Route::get('{name}', 'Auth\RegisterController@show')->where('name', '|register|login');
+
+// potrebna zbog zarad redirekcije neautorizovanih korisnika
+Route::get('/login', 'Auth\RegisterController@show')->name('login');
+
+// Reset password routes
+Route::namespace('Auth')->group(function(){
+
+	Route::get('/password/reset', 'ForgotPasswordController@showLinkRequestForm')->name('password.request');
+
+	Route::post('/password/email', 'ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+
+	Route::get('/password/reset{token?}', 'ResetPasswordController@showResetForm')->name('password.reset');
+
+	Route::post('/password/reset', 'ResetPasswordController@reset')->name('password.request');
+
+});
+
+
 
 // KAO POLU-HOMEPAGES S 4 STRANE: NEARBY/FRIENDS/CHAT/PICTURES
 
@@ -45,3 +63,7 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//countries
+
+Route::get('/countries/shown', 'CountriesController@getShownCountries');

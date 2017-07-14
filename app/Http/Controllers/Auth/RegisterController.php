@@ -42,7 +42,7 @@ class RegisterController extends Controller
     }
 
     public function show()
-    {
+    {   
 
         return view('auth.register', [
                 'countries' => Countries::get()->all(),
@@ -56,7 +56,7 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {   
+    {          
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'surname' => 'required|string|max:255',
@@ -80,7 +80,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-
+        
         return User::create([
             'name' => $data['name'],
             'surname' => $data['surname'],

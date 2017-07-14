@@ -12,5 +12,4 @@ Route::group([
     Route::get('/test', function ()    {
         echo 'test';
     });
-
 });

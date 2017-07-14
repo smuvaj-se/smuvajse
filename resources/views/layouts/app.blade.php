@@ -14,9 +14,12 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/ionicons.min.css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->   
+    <!-- <link rel="stylesheet" href="css/ionicons.min.css" />-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" /> 
+
+    <link rel="stylesheet" href="{{ url('css/style.css') }}" />
+    <link rel="stylesheet" href="{{ url('css/ionicons.min.css') }}" />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
@@ -27,16 +30,16 @@
     ================================================= -->
     <header id="header-inverse clearfix">
 
-      <nav class="navbar navbar-default navbar-fixed-top menu">
+     <!--  <nav class="navbar navbar-default navbar-fixed-top menu"> -->
         <div class="container">
 
           <!-- Brand and toggle get grouped for better mobile display -->
           <div class="navbar-header">
-            <a class="navbar-brand" href="index-register.html"><img src="images/logo.png" alt="logo" /></a>
+            <a class="navbar-brand" href="/"><img src="{{ url('images/logo.png') }}" alt="logo" /></a>
           </div>
 
         </div><!-- /.container -->
-      </nav>
+      <!-- </nav> -->
     </header>
     <!--Header End-->
 
@@ -50,9 +53,10 @@
           integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
           crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="js/jquery.sticky-kit.min.js"></script>
-    <script src="js/jquery.scrollbar.min.js"></script>
-    <script src="js/masonry.pkgd.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="{{ url('js/jquery.sticky-kit.min.js') }}"></script>
+    <script src="{{ url('js/jquery.scrollbar.min.js') }}"></script>
+    <script src="{{ url('js/masonry.pkgd.min.js') }}"></script>
+    <script src="{{ url('js/script.js') }}"></script>
+    <script src="{{ url('js/app.js') }}"></script>
 </body>
 </html>
