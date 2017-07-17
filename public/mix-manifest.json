@@ -1,0 +1,10 @@
+{
+  "/mix.js": "/mix.js",
+  "/js/app.js": "/js/app.js",
+  "/css/app.css": "/css/app.css",
+  "/admin/js/app.js": "/admin/js/app.js",
+  "/admin/js/vendor.js": "/admin/js/vendor.js",
+  "/admin/js/manifest.js": "/admin/js/manifest.js",
+  "/js/vendor.js": "/js/vendor.js",
+  "/js/manifest.js": "/js/manifest.js"
+}
