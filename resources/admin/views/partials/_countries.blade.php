@@ -10,40 +10,69 @@
 	<span v-html="messageData.text"></span>
 </div>
 
-<table class="table table-striped table-hover">
+<div class="clearfix">
+	<div class="col-md-6">
 
-	<thead>
+		<table class="table table-striped table-hover">
 
-		<tr>
-			<td class="col-md-4">
-				<input
-					class="form-control"
-					type="text"
-					id="country-filter"
-					@keyup="filterCountries"
-					placeholder="Filter countries by name">
-			</td>
-		</tr>
+			<thead>
 
-		<tr>
+				<tr>
+					<td class="col-md-6">
+						<input
+							class="form-control"
+							type="text"
+							id="country-filter"
+							@keyup="filterCountries"
+							placeholder="Filter countries by name">
+					</td>
+				</tr>
 
-			<td class="col-md-4">Country Name
-				<i class="fa fa-sort-asc fa-2x" aria-hidden="true"
-					@click="getCountries({orderBy: orderBy})">
-				</i>
-			</td>
-			<td class="countries-visible-filter col-md-2">
-				<visible-filters></visible-filters>
-			</td>
-			<td>Order</td>
-			<td>Actions</td>
+				<tr>
 
-		</tr>
+					<td class="col-md-6">Country Name
+						<div class="arrow-group">
+							<ordering-filters
+								order-by="name"
+								order="asc"
+								fa-class=" fa-sort-asc"
+								></ordering-filters>
+							<ordering-filters
+								order-by="name"
+								order="desc"
+								fa-class=" fa-sort-desc"
+								></ordering-filters>
+						</div>
+					</td>
 
-	</thead>
+					<td class="countries-visible-filter col-md-3">
+						<visible-filters></visible-filters>
+					</td>
+					<td>Order
+						<div class="arrow-group">
+							<ordering-filters
+								order-by="order"
+								order="asc"
+								fa-class=" fa-sort-asc"
+								></ordering-filters>
+							<ordering-filters
+								order-by="order"
+								order="desc"
+								fa-class=" fa-sort-desc"
+								></ordering-filters>
+						</div>
+					</td>
+					<td>Actions</td>
 
-	<tbody is="country-list" :countries="countries"></tbody>
+				</tr>
 
-	<tfoot is="pagination-list" :countries="countries"></tfoot>
+			</thead>
 
-</table>
+			<tbody is="country-list" :countries="countries"></tbody>
+
+			<tfoot is="pagination-list" :countries="countries"></tfoot>
+
+		</table>
+
+	</div>
+</div>

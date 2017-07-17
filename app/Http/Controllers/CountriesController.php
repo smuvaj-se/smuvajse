@@ -39,7 +39,7 @@ class CountriesController extends Controller
         if($showQuery && $showQuery != 'all')
             $query->where('show', "{$showQuery}");
 
-        $request->get('orderBy') ? $query->orderBy('name', $request->get('orderBy')) : $query->orderBy('name', 'asc');
+        $request->get('orderBy') ? $query->orderBy($request->get('orderBy'), $request->get('order')) : $query->orderBy('name', 'asc');
 
         return $query->paginate(20);
     }

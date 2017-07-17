@@ -18,18 +18,59 @@ window.axios.defaults.headers.common = {
 	'X-Requested-With': 'XMLHttpRequest'
 };
 
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('ordering-filters', {
+	template: '\n\t\t\t<a href="#"\n\t\t\t\t:class="iconClass + faClass"\n\t\t\t\taria-hidden="true"\n\t\t\t\t@click="orderCountries({orderBy, order})">\n\t\t\t</a>',
+
+	props: {
+		orderBy: {
+			type: String,
+			required: true
+		},
+		order: {
+			type: String,
+			required: true
+		},
+		iconClass: {
+			type: String,
+			default: "fa fa-lg text-muted"
+		},
+		faClass: {
+			type: String,
+			required: true
+		}
+	},
+
+	methods: {
+		orderCountries: function orderCountries(params) {
+
+			if (!this.$el.classList.contains('active')) {
+
+				Event.$emit('ordering-filters', params);
+
+				this.$el.classList.add('active');
+			}
+		}
+	}
+
+});
+
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('visible-filters', {
 	template: '\n\t\t<div>\n\t\t\t<span\n\t\t\t\tv-for="query in queryFilters"\n\t\t\t\t:class="{ \'text-muted\': !query.selected }"\n\t\t\t\t@mouseenter="changeClassMouseenter(query)"\n\t\t\t\t@mouseout="changeClassMouseout(query)"\n\t\t\t\t@click="filterVisibility(query)"\n\t\t\t>{{query.name}}</span>\n\t\t</div>\n\t',
 
 	methods: {
 		filterVisibility: function filterVisibility(selectedFilter) {
 
-			this.queryFilters.forEach(function (filter) {
-				filter.selected = filter.query == selectedFilter.query;
-				filter.active = filter.query == selectedFilter.query;
-			});
+			// If we click on the active filter
+			// We don't want to make the query call for something which is show at the moment
+			if (!selectedFilter.active) {
 
-			Event.$emit('country-filter', selectedFilter.query);
+				this.queryFilters.forEach(function (filter) {
+					filter.selected = filter.query == selectedFilter.query;
+					filter.active = filter.query == selectedFilter.query;
+				});
+
+				Event.$emit('country-filter', selectedFilter.query);
+			}
 		},
 		changeClassMouseenter: function changeClassMouseenter(query) {
 			if (!query.active) query.selected = true;
@@ -70,7 +111,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('country-list', {
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('pagination-list', {
 
-	template: '\n    \t<tfoot v-if="countries.total > 20">\n\t\t\t<tr align="center">\n\t\t\t\t<nav aria-label="Page navigation">\n\t\t\t\t\t<ul class="pagination">\n\t\t\t\t\t\t<li :class="countries.current_page == 1 ? \'disabled\' : \'\'">\n\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t:class="countries.current_page == 1 ? \'disabled\' : \'\'"\n\t\t\t\t\t\t\t\t:href="countries.current_page == 1 ? \'#\' : countries.prev_page_url"\n\t\t\t\t\t\t\t\t@click.prevent="\n\t\t\t\t\t\t\t\tcountries.current_page != 1 ? pagination(countries.current_page - 1) : null"\n\t\t\t\t\t\t\t\taria-label="Previous">\n\t\t\t\t\t\t\t\t<span aria-hidden="true">&laquo;</span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</li>\n\n\t\t\t\t\t\t<li v-for="i in countries.last_page"\n\t\t\t\t\t\t:class="countries.current_page == i ? \'active\' : \'\'"\n\t\t\t\t\t\t>\n\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t:href="countries.current_page == i ? \'#\' : \'/country/search?page=\'+i"\n\t\t\t\t\t\t\t\t@click.prevent="pagination(i)"\n\t\t\t\t\t\t\t>{{i}}</a>\n\t\t\t\t\t\t</li>\n\n\t\t\t\t\t\t<li :class="countries.current_page == countries.last_page ? \'disabled\' : \'\'">\n\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t:href="countries.current_page < countries.last_page ? countries.next_page_url : \'#\'"\n\t\t\t\t\t\t\t\t@click.prevent="\n\t\t\t\t\t\t\t\tcountries.current_page < countries.last_page ? pagination(countries.current_page + 1) : null"\n\t\t\t\t\t\t\t\taria-label="Next">\n\t\t\t\t\t\t\t\t<span aria-hidden="true">&raquo;</span>\n\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t</ul>\n\t\t\t\t</nav>\n    \t\t</tr>\n\t\t</tfoot>\n    ',
+	template: '\n    \t<tfoot v-if="countries.total > 20">\n\t\t\t<tr align="center">\n\t\t\t\t<td colspan="4">\n\t\t\t\t\t<nav aria-label="Page navigation">\n\t\t\t\t\t\t<ul class="pagination">\n\t\t\t\t\t\t\t<li :class="countries.current_page == 1 ? \'disabled\' : \'\'">\n\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t:class="countries.current_page == 1 ? \'disabled\' : \'\'"\n\t\t\t\t\t\t\t\t\t:href="countries.current_page == 1 ? \'#\' : countries.prev_page_url"\n\t\t\t\t\t\t\t\t\t@click.prevent="\n\t\t\t\t\t\t\t\t\tcountries.current_page != 1 ? pagination(countries.current_page - 1) : null"\n\t\t\t\t\t\t\t\t\taria-label="Previous">\n\t\t\t\t\t\t\t\t\t<span aria-hidden="true">&laquo;</span>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t</li>\n\n\t\t\t\t\t\t\t<li v-for="i in countries.last_page"\n\t\t\t\t\t\t\t:class="countries.current_page == i ? \'active\' : \'\'"\n\t\t\t\t\t\t\t>\n\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t:href="countries.current_page == i ? \'#\' : \'/country/search?page=\'+i"\n\t\t\t\t\t\t\t\t\t@click.prevent="pagination(i)"\n\t\t\t\t\t\t\t\t>{{i}}</a>\n\t\t\t\t\t\t\t</li>\n\n\t\t\t\t\t\t\t<li :class="countries.current_page == countries.last_page ? \'disabled\' : \'\'">\n\t\t\t\t\t\t\t\t<a\n\t\t\t\t\t\t\t\t\t:href="countries.current_page < countries.last_page ? countries.next_page_url : \'#\'"\n\t\t\t\t\t\t\t\t\t@click.prevent="\n\t\t\t\t\t\t\t\t\tcountries.current_page < countries.last_page ? pagination(countries.current_page + 1) : null"\n\t\t\t\t\t\t\t\t\taria-label="Next">\n\t\t\t\t\t\t\t\t\t<span aria-hidden="true">&raquo;</span>\n\t\t\t\t\t\t\t\t</a>\n\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t</ul>\n\t\t\t\t\t</nav>\n\t\t\t\t</td>\n    \t\t</tr>\n\t\t</tfoot>\n    ',
 
 	props: ['countries'],
 
@@ -87,9 +128,8 @@ var App = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 	data: {
 		countries: [],
-		orderBy: 'desc',
-		showMessage: false,
-		messageData: {}
+		messageData: {},
+		showMessage: false
 	},
 
 	created: function created() {
@@ -116,7 +156,13 @@ var App = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 		});
 
 		Event.$on('country-filter', function (param) {
+			_this.removeActiveClass();
 			_this.getCountries({ show: param });
+		});
+
+		Event.$on('ordering-filters', function (params) {
+			_this.removeActiveClass();
+			_this.getCountries(params);
 		});
 	},
 
@@ -127,10 +173,6 @@ var App = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 			var getParams = {};
 
 			var self = this;
-
-			if (params && params.orderBy) {
-				this.orderBy = this.orderBy == 'asc' ? 'desc' : 'asc';
-			}
 
 			axios.get('/country/search', { params: params }).then(function (response) {
 				self.countries = response.data;
@@ -144,24 +186,17 @@ var App = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
 
 			var self = this;
 
-			if (name.length > 2) {
+			if (name.length > 2) this.getCountries({ name: name });
 
-				axios.get('/country/search', {
-					params: {
-						name: name
-					}
-				}).then(function (response) {
-					self.countries = response.data;
+			if (event.keyCode === 8 && name.length === 2 || !name.length) this.getCountries();
+		},
+		removeActiveClass: function removeActiveClass() {
 
-					console.log(self.countries);
-				}).catch(function (error) {
-					console.log(error);
-				});
-			}
-
-			if (event.keyCode === 8 && name.length === 2 || !name.length) {
-				this.getCountries();
-			}
+			this.$children.forEach(function (child) {
+				if (child.$options._componentTag == 'ordering-filters') {
+					child.$el.classList.remove('active');
+				}
+			});
 		}
 	}
 

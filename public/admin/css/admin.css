@@ -4,3 +4,22 @@
 .countries-visible-filter span:hover {
 	cursor: pointer;
 }
+.arrow-group {
+	margin-left: 10px;
+	position: relative;
+	display: inline-block;
+	width: 12px;
+	height: 16px;
+}
+.arrow-group a{
+	position: absolute;
+}
+.arrow-group a.fa-sort-asc {
+	top: 0;
+}
+.arrow-group a.fa-sort-desc {
+	top: 8px;
+}
+.arrow-group a.active {
+	color: #72afd2;
+}

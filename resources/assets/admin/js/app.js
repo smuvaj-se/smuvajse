@@ -9,6 +9,49 @@ window.axios.defaults.headers.common = {
     'X-Requested-With': 'XMLHttpRequest'
 };
 
+Vue.component('ordering-filters', {
+	template: `
+			<a href="#"
+				:class="iconClass + faClass"
+				aria-hidden="true"
+				@click="orderCountries({orderBy, order})">
+			</a>`,
+
+	props: {
+	    orderBy: {
+	        type: String,
+	        required: true
+	    },
+	    order: {
+	    	type: String,
+	    	required: true
+	    },
+	    iconClass: {
+	    	type: String,
+	    	default: "fa fa-lg text-muted"
+	    },
+	    faClass: {
+	    	type: String,
+	    	required: true
+	    },
+	},
+
+	methods: {
+
+		orderCountries(params){
+
+			if(!this.$el.classList.contains('active')){
+
+				Event.$emit('ordering-filters', params);
+
+				this.$el.classList.add('active');
+			}
+		}
+
+	}
+
+});
+
 Vue.component('visible-filters', {
 	template: `
 		<div>
@@ -26,12 +69,17 @@ Vue.component('visible-filters', {
 
 		filterVisibility(selectedFilter) {
 
-			this.queryFilters.forEach(filter => {
-				filter.selected = (filter.query == selectedFilter.query);
-				filter.active   = (filter.query == selectedFilter.query);
-			});
+			// If we click on the active filter
+			// We don't want to make the query call for something which is show at the moment
+			if(!selectedFilter.active){
 
-			Event.$emit('country-filter', selectedFilter.query);
+				this.queryFilters.forEach(filter => {
+					filter.selected = (filter.query == selectedFilter.query);
+					filter.active   = (filter.query == selectedFilter.query);
+				});
+
+				Event.$emit('country-filter', selectedFilter.query);
+			}
 		},
 
 		changeClassMouseenter(query) {
@@ -120,39 +168,41 @@ Vue.component('pagination-list', {
     template: `
     	<tfoot v-if="countries.total > 20">
 			<tr align="center">
-				<nav aria-label="Page navigation">
-					<ul class="pagination">
-						<li :class="countries.current_page == 1 ? 'disabled' : ''">
-							<a
-								:class="countries.current_page == 1 ? 'disabled' : ''"
-								:href="countries.current_page == 1 ? '#' : countries.prev_page_url"
-								@click.prevent="
-								countries.current_page != 1 ? pagination(countries.current_page - 1) : null"
-								aria-label="Previous">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
+				<td colspan="4">
+					<nav aria-label="Page navigation">
+						<ul class="pagination">
+							<li :class="countries.current_page == 1 ? 'disabled' : ''">
+								<a
+									:class="countries.current_page == 1 ? 'disabled' : ''"
+									:href="countries.current_page == 1 ? '#' : countries.prev_page_url"
+									@click.prevent="
+									countries.current_page != 1 ? pagination(countries.current_page - 1) : null"
+									aria-label="Previous">
+									<span aria-hidden="true">&laquo;</span>
+								</a>
+							</li>
 
-						<li v-for="i in countries.last_page"
-						:class="countries.current_page == i ? 'active' : ''"
-						>
-							<a
-								:href="countries.current_page == i ? '#' : '/country/search?page='+i"
-								@click.prevent="pagination(i)"
-							>{{i}}</a>
-						</li>
+							<li v-for="i in countries.last_page"
+							:class="countries.current_page == i ? 'active' : ''"
+							>
+								<a
+									:href="countries.current_page == i ? '#' : '/country/search?page='+i"
+									@click.prevent="pagination(i)"
+								>{{i}}</a>
+							</li>
 
-						<li :class="countries.current_page == countries.last_page ? 'disabled' : ''">
-							<a
-								:href="countries.current_page < countries.last_page ? countries.next_page_url : '#'"
-								@click.prevent="
-								countries.current_page < countries.last_page ? pagination(countries.current_page + 1) : null"
-								aria-label="Next">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
-				</nav>
+							<li :class="countries.current_page == countries.last_page ? 'disabled' : ''">
+								<a
+									:href="countries.current_page < countries.last_page ? countries.next_page_url : '#'"
+									@click.prevent="
+									countries.current_page < countries.last_page ? pagination(countries.current_page + 1) : null"
+									aria-label="Next">
+									<span aria-hidden="true">&raquo;</span>
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</td>
     		</tr>
 		</tfoot>
     `,
@@ -173,9 +223,8 @@ let App = new Vue({
 
 	data: {
 		countries: [],
-		orderBy: 'desc',
-		showMessage: false,
 		messageData: {},
+		showMessage: false,
 	},
 
 	created() {
@@ -208,7 +257,13 @@ let App = new Vue({
 		});
 
 		Event.$on('country-filter', (param) => {
+			this.removeActiveClass();
 			this.getCountries({show: param});
+		});
+
+		Event.$on('ordering-filters', (params) => {
+			this.removeActiveClass();
+			this.getCountries(params);
 		})
 
 	},
@@ -220,10 +275,6 @@ let App = new Vue({
 			let getParams = {};
 
 			let self = this;
-
-			if(params && params.orderBy){
-				this.orderBy = this.orderBy == 'asc' ? 'desc' : 'asc';
-			}
 
 			axios.get('/country/search', {params})
 				.then(function (response) {
@@ -241,27 +292,22 @@ let App = new Vue({
 
 			let self = this;
 
-			if(name.length > 2) {
+			if(name.length > 2)
+				this.getCountries({name: name});
 
-				axios.get('/country/search', {
-					params: {
-						name: name
-					}
-				})
-				.then(function (response) {
-					self.countries = response.data;
-
-					console.log(self.countries);
-				})
-				.catch(function (error) {
-					console.log(error);
-				});
-
-			}
-
-			if((event.keyCode === 8 && name.length === 2) || !name.length){
+			if((event.keyCode === 8 && name.length === 2) || !name.length)
 				this.getCountries();
-			}
+
+		},
+
+		removeActiveClass() {
+
+			this.$children.forEach(child => {
+				if(child.$options._componentTag == 'ordering-filters'){
+					child.$el.classList.remove('active');
+				}
+			});
+
 		}
 	}
 
